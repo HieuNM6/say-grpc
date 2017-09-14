@@ -1,4 +1,4 @@
 build:
-	GOOS=linux go build -o app
+	CGO_ENABLED=0 go build -a -installsuffix cgo -o app
 	docker build -t campoy/say .
 	rm -f app

@@ -9,19 +9,19 @@ import (
 	"fmt"
 	"net"
 
-	"google.golang.org/grpc"
-
 	pb "github.com/hieunm6/say-grpc/api"
 	"github.com/sirupsen/logrus"
+	"google.golang.org/grpc"
 )
 
 func main() {
 	port := flag.Int("p", 8080, "port to listen to")
 	flag.Parse()
 
+	logrus.Infof("listening to port %d", *port)
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", *port))
 	if err != nil {
-		logrus.Fatalf("could not listen to port %d: %v", *port)
+		logrus.Fatalf("could not listen to port %d: %v", *port, err)
 	}
 
 	s := grpc.NewServer()

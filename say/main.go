@@ -15,7 +15,7 @@ func main() {
 	output := flag.String("o", "output.wav", "wav file where the output will written")
 	flag.Parse()
 
-	connect, err := grpc.Dial(*backend)
+	connect, err := grpc.Dial(*backend, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("could not connect to %s: %v", *backend, err)
 	}
